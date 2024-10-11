@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozinhando Com Um Robo Assassino</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Bem-vindo ao show "Cozinhando Com Um Robo Assassino!"</h1>
+    
+    <div id="chat-container"></div> <!-- Aqui ficam as mensagens -->
+    
+    <!-- Formulário fixo no rodapé -->
+    <form id="user-input-form">
+        <input type="text" id="user_input" name="user_input" placeholder="Digite algo para Mettaton...">
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('user-input-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userInput = document.getElementById('user_input').value;
+
+            // Exibir a mensagem do usuário no chat
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = userInput; // Utilizamos textContent para evitar inserção de HTML
+            document.getElementById('chat-container').appendChild(userMessage);
+
+            // Limpar o campo de entrada
+            document.getElementById('user_input').value = '';
+
+            // Fazer a requisição para o servidor
+            fetch('/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'user_input=' + encodeURIComponent(userInput),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Exibir a resposta do LLM no chat
+                const llmMessage = document.createElement('div');
+                llmMessage.className = 'message llm-message';
+                llmMessage.innerHTML = "Mettaton: " + data.response; // Usamos innerHTML para permitir HTML, como listas
+
+                document.getElementById('chat-container').appendChild(llmMessage);
+                
+                // Manter o chat rolando até a última mensagem
+                document.getElementById('chat-container').scrollTop = document.getElementById('chat-container').scrollHeight;
+            });
+        });
+    </script>
+</body>
+</html>

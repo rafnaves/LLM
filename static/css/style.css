@@ -1,0 +1,100 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e; /* Cor de fundo escura */
+    color: #f5f5f5; /* Texto claro */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+h1 {
+    color: #620d69;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#chat-container {
+    overflow-y: auto;
+    flex-grow: 1;
+    padding: 10px;
+    margin-bottom: 100px; /* Espaço para o formulário de entrada */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: pre-wrap; /* Preserva quebras de linha no texto */
+}
+
+.message {
+    max-width: 60%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Preserva quebras de linha e espaços */
+}
+
+.user-message {
+    align-self: flex-end;
+    background-color: #3d3d3d; /* Cor para a mensagem do usuário */
+    color: white;
+}
+
+.llm-message {
+    align-self: flex-start;
+    background-color: #444444; /* Cor para a mensagem do LLM */
+    color: #f5f5f5;
+}
+
+.llm-message ul, .llm-message ol {
+    margin-left: 20px;
+}
+
+.llm-message li {
+    margin-bottom: 5px;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: #2c2c2c; /* Cor de fundo do formulário */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 1em;
+    width: 70%;
+    border: 2px solid #620d69;
+    border-radius: 5px;
+    color: #f5f5f5;
+    background-color: #3d3d3d;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #620d69;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #620d69;
+}
