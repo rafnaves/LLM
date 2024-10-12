@@ -1,2 +1,2 @@
-npm install @google/generative-ai
+pip install google-generativeai
 pip install Flask
